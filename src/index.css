@@ -29,7 +29,7 @@
 }
 
 html {
-    font-size: 62.5%; /* 1rem = 10px */
+    font-size: 62.5%;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
@@ -42,35 +42,19 @@ body {
 img {
     border-radius: 20px;
 }
-/* src/index.css */
 
-/* ... kode CSS Anda yang sudah ada ... */
-
-/* Gaya untuk elemen .profession */
 .profession {
-    position: absolute; /* Penting! Memungkinkan penempatan dengan left/top */
-    left: 0; /* Semua elemen dimulai dari sisi kiri profession-box */
-    top: 50%; /* Posisikan vertikal di tengah */
-    transform: translateY(-50%) rotate(var(--initial-rotate)); /* Gabungkan centering vertikal dengan putaran awal */
-
-    /* Transform-origin yang bergantung pada lebar profession-container */
-    --orbit-origin-x: 38.4rem; /* Default untuk mobile */
-    transform-origin: var(--orbit-origin-x) 50%; /* Titik pivot rotasi */
-    
-    /* CSS variable untuk putaran awal, akan diset dari JSX */
-    --initial-rotate: 0deg; 
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(var(--initial-rotate));
+    --orbit-origin-x: 38.4rem;
+    transform-origin: var(--orbit-origin-x) 50%;
+    --initial-rotate: 0deg;
 }
 
-/* Media queries untuk mengubah --orbit-origin-x secara responsif */
-@media (min-width: 768px) { /* Untuk layar MD dan lebih besar */
+@media (min-width: 768px) {
     .profession {
-        --orbit-origin-x: 48rem; /* Nilai origin untuk breakpoint MD */
+        --orbit-origin-x: 48rem;
     }
 }
-
-@media (min-width: 1024px) { /* Untuk layar LG dan lebih besar */
-    .profession {
-        --orbit-origin-x: 58rem; /* Nilai origin untuk breakpoint LG */
-    }
-}
-
