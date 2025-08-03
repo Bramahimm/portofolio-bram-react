@@ -104,7 +104,7 @@ function HomePage() {
               {professionItems.map((item, index) => (
                 <div
                   key={index}
-                  className="profession text-center"
+                  className="bg-bg-color profession text-center"
                   style={{ "--i": index }}>
                   <i className={`bx ${item.icon} text-[3.8rem] mb-2`}></i>
                   <h3 className="text-[3.2rem] font-semibold leading-none">
