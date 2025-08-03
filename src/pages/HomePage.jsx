@@ -43,10 +43,10 @@ function HomePage() {
   return (
     <section
       id="home-section"
-      className="home relative flex flex-col md:flex-row items-center justify-between min-h-screen px-4 sm:px-[7%] py-24 sm:py-32 md:py-40 overflow-hidden">
+      className="home relative flex flex-col md:flex-row items-center justify-between min-h-screen px-4 sm:px-[0%] py-24 sm:py-32 md:py-40 overflow-hidden">
       <div className="flex flex-col md:flex-row items-center justify-between w-full z-10 gap-8 md:gap-16">
-        <div className="ml-0 md:ml-[150px] home-content text-center md:text-left md:w-1/2 lg:w-2/5">
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-semibold mb-2 text-text-color">
+        <div className="ml-0 md:ml-[120px] home-content text-center md:text-left md:w-1/2 lg:w-2/5">
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-text-color">
             Hi, I'm
           </h3>
           <h1 className="xs:text-4xl text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-text-color">
@@ -100,7 +100,7 @@ function HomePage() {
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-screen h-screen overflow-hidden pointer-events-none z-0 hidden lg:block">
           <div className="absolute top-1/2 right-0 -translate-y-1/2 w-screen h-screen overflow-hidden pointer-events-none z-0 hidden lg:block">
             {/* BOX UTAMA BERPUTAR */}
-            <div className="profession-box">
+            <div className="profession-box relative">
               {professionItems.map((item, index) => (
                 <div
                   key={index}
@@ -129,11 +129,11 @@ function HomePage() {
                 }}></div>
 
               {/* IMAGE PROFILE */}
-              <div className="absolute top-1/2 right-[-2%] -translate-y-1/2 z-20 hidden lg:flex justify-end items-center">
+              <div className="absolute top-1/2 right-[1%] -translate-y-1/2 z-20 hidden lg:flex justify-end items-center">
                 <img
                   src={myImage}
                   alt="Bram Ahimsa"
-                  className="w-[300px] sm:w-[380px] lg:w-[420px] xl:w-[400px] h-auto rounded-full"
+                  className="w-[220px] sm:w-[300px] lg:w-[360px] xl:w-[350px] h-auto rounded-full"
                 />
               </div>
             </div>

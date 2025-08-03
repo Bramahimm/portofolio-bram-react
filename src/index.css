@@ -48,7 +48,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: professionRotate 13s linear infinite;
+  animation: professionRotate 10s linear infinite;
 }
 
 .profession {
@@ -63,6 +63,14 @@ body {
   padding: 13px 0;
 }
 
+@keyframes professionRotate {
+  0%, 20% { transform: rotate(0deg); }
+  25%, 45% { transform: rotate(-90deg); }
+  50%, 70% { transform: rotate(-180deg); }
+  75%, 95% { transform: rotate(-270deg); }
+  100% { transform: rotate(-360deg); }
+}
+
 .circle {
   width: 560px;
   height: 560px;
@@ -71,24 +79,4 @@ body {
   z-index: -1;
 }
 
-@keyframes professionRotate {
-  0%,
-  20% {
-    transform: rotate(0deg);
-  }
-  25%,
-  45% {
-    transform: rotate(-90deg);
-  }
-  50%,
-  70% {
-    transform: rotate(-180deg);
-  }
-  75%,
-  95% {
-    transform: rotate(-270deg);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
+
