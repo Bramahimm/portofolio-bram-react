@@ -54,7 +54,6 @@ body {
   animation: professionRotate 13s ease-out infinite;
 }
 
-/* Item Orbit Individual */
 .profession {
   position: absolute;
   left: 0;
@@ -78,7 +77,6 @@ body {
   font-weight: 600;
 }
 
-/* Lingkaran Tengah Orbit */
 .circle {
   width: 560px;
   height: 560px;
@@ -202,25 +200,6 @@ body {
     display: none;
   }
 
-  .navbar.active {
-    display: block;
-  }
-
-  .navbar a {
-    display: block;
-    font-size: 2rem;
-    margin: 3rem 0;
-    color: var(--text-color);
-  }
-
-  .navbar a:nth-child(1),
-  .navbar a:nth-child(2) {
-    color: var(--text-color);
-  }
-
-  .navbar a.active {
-    color: var(--main-color);
-  }
   .profession-container {
     left: 0;
     width: 100%;
@@ -276,38 +255,6 @@ body {
     border-width: 23.9rem;
   }
 
-  .about {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .about-content h2 {
-    text-align: center;
-  }
-
-  .about-img img {
-    width: 70vw;
-    margin-top: -2rem;
-  }
-
-  .testimonial-container .testimonial-wrapper {
-    padding: 5rem 0;
-  }
-
-  .testimonial-content .testimonial-slide {
-    padding: 3rem 2rem;
-  }
-
-  .testimonial-box .swiper-button-next,
-  .testimonial-box .swiper-button-prev {
-    display: none;
-  }
-}
-
-@media (max-width: 580px) {
-  .portfolio .portfolio-container {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 450px) {
@@ -337,30 +284,5 @@ body {
 
   .profession-container .overlay {
     top: 80rem;
-  }
-
-  .contact form .input-box input {
-    width: 100%;
-  }
-
-  .footer {
-    flex-direction: column-reverse;
-  }
-
-  .footer p {
-    text-align: center;
-    margin-top: 2rem;
-  }
-}
-
-@media (max-width: 365px) {
-  .about-img img {
-    width: 90vw;
-  }
-}
-
-@media (max-width: 315px) {
-  -content h1 {
-    font-size: 4.5rem;
   }
 }
