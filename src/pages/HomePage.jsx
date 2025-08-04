@@ -4,7 +4,7 @@ import myImage from "/images/me.jpg";
 function HomePage() {
   useEffect(() => {
     if (typeof window.ScrollReveal !== "undefined") {
-      window.ScrollReveal().reveal(".home-content, .heading", {
+      window.ScrollReveal().reveal(".home-content", {
         origin: "top",
         distance: "80px",
         duration: 2000,
@@ -52,13 +52,13 @@ function HomePage() {
           <h1 className="xs:text-4xl text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-4 text-text-color">
             Bram Ahimsa Lafayet
           </h1>
-          <p className="text-base sm:text-lg mb-4 text-text-color">
+          <p className="text-base sm:text-3xl mb-4 text-text-color">
             I'm currently dedicating most of my time to web
             development—building, refining, and experimenting with personal
             projects. On slower days, you'll probably find me recharging with a
             quick walk to the local store or catching up on design inspiration.
           </p>
-          <p className="text-base sm:text-lg mb-8 text-text-color">
+          <p className="text-base sm:text-2xl mb-8 text-text-color">
             Outside of coding, my routine is simple: eat, rest, reflect, and
             stay curious. Whether I'm diving into new tech stacks or sketching
             UI ideas, I try to stay consistent and keep growing as a developer.
@@ -120,7 +120,7 @@ function HomePage() {
             <div className="absolute top-1/2 right-0 -translate-y-1/2 w-screen h-screen overflow-hidden pointer-events-none z-0 hidden lg:block">
               {/* OVERLAY PINK */}
               <div
-                className="absolute top-0 right-0 w-0 h-0 z-[-2]"
+                className="absolute top-0 right-0 xl:right-[-6%] w-0 h-0 z-[-2]"
                 style={{
                   borderTop: "50vh solid var(--main-color)",
                   borderRight: "384px solid var(--main-color)",
