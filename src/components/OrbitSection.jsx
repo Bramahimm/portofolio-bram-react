@@ -25,13 +25,13 @@ function OrbitSection() {
       {/* Overlay Trapezoid */}
       <div className="overlay"></div>
 
-      {/* Image Profile */}
       {/* IMAGE PROFILE */}
       <div className="absolute top-1/2 right-[1%] -translate-y-1/2 z-20 hidden lg:flex justify-end items-center">
         <img
+          id="img"
           src={myImage}
           alt="Bram Ahimsa"
-          className="w-[220px] sm:w-[300px] lg:w-[360px] xl:w-[350px] h-auto rounded-full"
+          className="w-[220px] sm:w-[260px] md:w-[300px] lg:w-[360px] xl:w-[350px] h-auto rounded-full"
         />
       </div>
     </div>
