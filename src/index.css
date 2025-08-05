@@ -29,7 +29,6 @@ body {
   color: var(--text-color);
 }
 
-/* Orbit Container */
 .profession-container {
   position: absolute;
   top: 50%;
@@ -41,7 +40,6 @@ body {
   pointer-events: none;
 }
 
-/* Box Rotasi Utama */
 .profession-box {
   position: absolute;
   top: 0;
@@ -252,7 +250,7 @@ body {
     left: 50%;
     right: 0;
     transform: rotate(90deg) translate(-50%, 50%) scaleY(3);
-    border-width: 23.9rem;
+    border-width: 23.9rem;    
   }
 
 }

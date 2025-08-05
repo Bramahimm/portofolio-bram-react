@@ -21,7 +21,6 @@ function OrbitSection() {
         ))}
         <div className="circle"></div>
       </div>
-
       {/* Overlay Trapezoid */}
       <div className="overlay"></div>
 

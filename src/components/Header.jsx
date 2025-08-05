@@ -1,141 +1,108 @@
+// src/components/Header.jsx
 import React, { useState, useEffect } from "react";
-import { Link as ScrollLink } from "react-scroll";
 
 function Header() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "enabled";
+  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home-section");
-  const [isSticky, setIsSticky] = useState(false);
 
-  // Efek untuk memuat preferensi dark mode dari localStorage saat komponen di-mount
   useEffect(() => {
-    const savedMode = localStorage.getItem("dark-mode"); // Menggunakan "dark-mode" sesuai CSS
-    if (savedMode === "enabled") {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark-mode"); // Gunakan "dark-mode"
-    } else {
-      setIsDarkMode(false);
-      document.documentElement.classList.remove("dark-mode"); // Gunakan "dark-mode"
-    }
-  }, []); // Hanya berjalan sekali saat mount
-
-  // Efek untuk Sticky Header dan menutup menu saat scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      // Logika Sticky Header
-      if (window.scrollY > 100) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-
-      // Logika untuk menutup menu mobile saat scroll jika sedang terbuka
-      if (isMenuOpen) {
-        setIsMenuOpen(false);
-      }
+    const handleHashChange = () => {
+      const currentHash = window.location.hash.slice(1) || "home";
+      setActiveLink(currentHash);
     };
 
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup function: hapus event listener saat komponen unmount
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleHashChange);
     };
-  }, [isMenuOpen]); // isMenuOpen sebagai dependensi agar handleScroll selalu melihat nilai terbaru
+  }, []);
 
-  // Fungsi untuk toggle dark mode
-  const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-
-    if (newMode) {
-      document.documentElement.classList.add("dark-mode");
-      localStorage.setItem("dark-mode", "enabled");
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+      localStorage.setItem("darkMode", "enabled");
     } else {
-      document.documentElement.classList.remove("dark-mode");
-      localStorage.setItem("dark-mode", "disabled");
+      document.body.classList.remove("dark-mode");
+      localStorage.setItem("darkMode", "disabled");
     }
+  }, [isDarkMode]);
+
+  const handleDarkModeToggle = () => {
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
-  // Fungsi untuk toggle menu mobile
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleMenuToggle = () => {
+    setIsMenuOpen((prevOpen) => !prevOpen);
   };
 
-  // Daftar item navigasi
   const navItems = [
-    { id: "home-section", label: "Home" },
-    { id: "about-section", label: "About" },
-    { id: "services-section", label: "Services" },
-    { id: "projects-section", label: "Projects" },
-    { id: "contact-section", label: "Contact" },
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "project", label: "Project" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full p-4 flex justify-between items-center z-50
-                  transition-colors duration-300 dark:bg-black-color dark:shadow-shadow-color
-                  ${isSticky ? 'bg-white-color/90 backdrop-blur-sm shadow-md' : 'bg-bg-color shadow-none'}`}
-    >
-      <ScrollLink
-        to="home-section"
-        smooth={true}
-        duration={500}
-        className="text-2xl font-bold cursor-pointer text-text-color hover:text-main-color transition-colors duration-300"
-        onClick={() => setIsMenuOpen(false)}
-      >
+    <header className="sticky top-0 w-full px-[7%] py-6 z-[100] backdrop-blur-sm bg-white/70 dark:bg-dark-color/80 flex items-center justify-between transition-all duration-500 border-b border-shadow-color">
+      <a
+        href="#home"
+        className="text-[2.5rem] text-main-color font-semibold mr-auto">
         BramahimmCode
-      </ScrollLink>
+      </a>
 
+      {/* Menu Icon (Hamburger) for Mobile */}
       <div
-        className="text-3xl cursor-pointer md:hidden text-text-color hover:text-main-color"
-        id="menu-icon"
-        onClick={toggleMenu}
-      >
-        <i className={`bx ${isMenuOpen ? "bx-x" : "bx-menu"}`}></i>{" "}
-      </div>
+        className={`bx text-[3.6rem] text-text-color cursor-pointer lg:hidden ${
+          isMenuOpen ? "bx-x" : "bx-menu"
+        }`}
+        onClick={handleMenuToggle}></div>
 
+      {/* Navbar */}
       <nav
-        className={`navbar ${isMenuOpen ? "block" : "hidden"
-          } md:flex md:items-center md:space-x-8
-                    absolute md:static top-full left-0 w-full md:w-auto
-                    bg-white-color dark:bg-black-color shadow-lg md:shadow-none
-                    flex flex-col md:flex-row items-center transition-all duration-300 ease-in-out z-40`}
-        style={{
-          maxHeight: isMenuOpen ? "300px" : "0", 
-          overflow: "hidden",
-        }}
-      >
+        className={`
+        lg:flex lg:items-center lg:space-x-14
+        ${isMenuOpen ? "block" : "hidden"} 
+        absolute top-full left-0 w-full py-4 px-[3%] bg-white 
+        border-t border-solid border-shadow-color shadow-lg 
+        lg:static lg:w-auto lg:p-0 lg:border-none lg:shadow-none
+        transition-all duration-300 ease-in-out lg:transition-none
+      `}>
         {navItems.map((item) => (
-          <ScrollLink
+          <a
             key={item.id}
-            to={item.id}
-            smooth={true}
-            duration={500}
-            offset={-70} 
-            className={`block py-3 px-4 text-lg font-semibold text-text-color hover:text-main-color transition-colors duration-300
-                        ${activeSection === item.id ? "active-link-tailwind" : ""
-            }
-                        cursor-pointer w-full text-center md:w-auto md:text-left`}
+            href={`#${item.id}`}
+            className={`
+              relative text-[1.7rem] font-medium text-text-color mx-0 lg:mx-0 lg:mr-0
+              block my-8 text-[2rem] lg:my-0 lg:text-[1.7rem]
+              ${
+                activeLink === item.id
+                  ? "text-main-color lg:text-text-color"
+                  : ""
+              }
+              lg:hover:text-bg-color
+              before:content-[''] before:absolute before:left-0 before:bottom-[-6px] before:w-0 before:h-[0.2rem] before:bg-main-color before:transition-all before:duration-300
+              ${activeLink === item.id ? "lg:before:w-full" : ""}
+              lg:hover:before:w-full
+            `}
             onClick={() => {
+              setActiveLink(item.id);
               setIsMenuOpen(false);
-              setActiveSection(item.id);
-            }}
-            onSetActive={(to) => setActiveSection(to)}
-            spy={true}
-          >
+            }}>
             {item.label}
-          </ScrollLink>
+          </a>
         ))}
       </nav>
 
+      {/* Dark Mode Icon */}
       <div
-        className="text-3xl cursor-pointer text-text-color hover:text-main-color"
-        id="darkMode-icon"
-        onClick={toggleDarkMode}
-      >
-        <i className={`bx ${isDarkMode ? "bx-sun" : "bx-moon"}`}></i>
-      </div>
+        className={`bx ${
+          isDarkMode ? "bxs-sun" : "bx-moon"
+        } text-[2.4rem] text-text-color cursor-pointer ml-8 lg:ml-20 transition-colors duration-200 hover:text-bg-color`}
+        onClick={handleDarkModeToggle}></div>
     </header>
   );
 }
