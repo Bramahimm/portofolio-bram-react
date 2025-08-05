@@ -23,7 +23,6 @@ module.exports = {
         poppins: ["Poppins", "sans-serif"],
       },
       keyframes: {
-        // PERBAIKAN: Keyframes ini sekarang MENCERMINKAN putaran bertahap dari CSS asli Anda.
         professionRotateAnimation: {
           "0%, 20%": { transform: "rotate(0deg)" },
           "25%, 45%": { transform: "rotate(-90deg)" },
